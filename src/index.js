@@ -1,6 +1,6 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './App'
-import './index.css'
+import React, { Fragment } from 'react';
+import ReactDOM from 'react-dom';
+import Routes from './Routes';
+import './index.css';
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<Fragment>{Routes}</Fragment>, document.getElementById('root'));
