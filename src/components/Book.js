@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ShelfChanger from './ShelfChanger';
+import { SelectShelf } from '../components';
 
-const Book = ({ book, changeShelf }) => {
+const Book = ({ book, setShelf }) => {
   const { authors, imageLinks, title } = book;
 
   const handleChange = shelf => {
-    changeShelf(book, shelf);
+    setShelf(book, shelf);
   };
 
   return (
@@ -21,10 +21,10 @@ const Book = ({ book, changeShelf }) => {
               backgroundImage: `url(${imageLinks.thumbnail})`,
             }}
           />
-          <ShelfChanger book={book} changeShelf={handleChange} />
+          <SelectShelf book={book} setShelf={handleChange} />
         </div>
         <div className="book-title">{title}</div>
-        <div className="book-authors">{authors[0]}</div>
+        <div className="book-authors">{authors ? authors[0] : ''}</div>
       </div>
     </li>
   );
@@ -32,7 +32,7 @@ const Book = ({ book, changeShelf }) => {
 
 Book.propTypes = {
   book: PropTypes.object.isRequired,
-  changeShelf: PropTypes.func.isRequired,
+  setShelf: PropTypes.func.isRequired,
 };
 
 export default Book;
