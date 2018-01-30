@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { SelectShelf } from '../components';
 
-const Book = ({ book, setShelf }) => {
+const Book = ({ book, shelves, updateShelf }) => {
   const { authors, imageLinks, title } = book;
 
   const handleChange = shelf => {
-    setShelf(book, shelf);
+    updateShelf(book, shelf);
   };
 
   return (
@@ -21,7 +21,11 @@ const Book = ({ book, setShelf }) => {
               backgroundImage: `url(${imageLinks.thumbnail})`,
             }}
           />
-          <SelectShelf book={book} setShelf={handleChange} />
+          <SelectShelf
+            book={book}
+            updateShelf={handleChange}
+            shelves={shelves}
+          />
         </div>
         <div className="book-title">{title}</div>
         <div className="book-authors">{authors ? authors[0] : ''}</div>
@@ -32,7 +36,8 @@ const Book = ({ book, setShelf }) => {
 
 Book.propTypes = {
   book: PropTypes.object.isRequired,
-  setShelf: PropTypes.func.isRequired,
+  updateShelf: PropTypes.func.isRequired,
+  shelves: PropTypes.array.isRequired,
 };
 
 export default Book;

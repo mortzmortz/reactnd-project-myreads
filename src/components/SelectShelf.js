@@ -1,20 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SelectShelf = ({ book, setShelf }) => {
-  const handleChange = e => {
-    setShelf(e.target.value);
+const SelectShelf = ({ book, shelves, updateShelf }) => {
+  const handleChange = event => {
+    updateShelf(event.target.value);
   };
 
   return (
     <div className="book-shelf-changer">
       <select value={book.shelf || 'none'} onChange={handleChange}>
-        <option value="none" disabled>
+        <option value="disabled" disabled>
           Move to...
         </option>
-        <option value="currentlyReading">Currently Reading</option>
-        <option value="wantToRead">Want to Read</option>
-        <option value="read">Read</option>
+        {shelves.map(shelf => (
+          <option value={shelf.key} key={shelf.key}>
+            {shelf.title}
+          </option>
+        ))}
         <option value="none">None</option>
       </select>
     </div>
@@ -23,7 +25,8 @@ const SelectShelf = ({ book, setShelf }) => {
 
 SelectShelf.propTypes = {
   book: PropTypes.object.isRequired,
-  setShelf: PropTypes.func.isRequired,
+  updateShelf: PropTypes.func.isRequired,
+  shelves: PropTypes.array.isRequired,
 };
 
 export default SelectShelf;
