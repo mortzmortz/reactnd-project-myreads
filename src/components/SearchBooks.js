@@ -14,6 +14,7 @@ class SearchBooks extends Component {
 
   state = {
     query: '',
+    isFetching: false,
     results: [],
   };
 
@@ -23,11 +24,14 @@ class SearchBooks extends Component {
       this.setState(
         {
           query: value,
+          isFetching: true,
         },
         () => this.performSearh(value)
       );
     } else {
       this.setState({
+        query: '',
+        isFetching: false,
         results: [],
       });
     }
@@ -41,16 +45,17 @@ class SearchBooks extends Component {
         return book;
       });
       this.setState({
-        results: resultsWithShelves,
+        isFetching: false,
+        results: query ? resultsWithShelves : [],
       });
     });
   }, 500);
 
-  // TODO: change shelf in results here
+  // TODO: updateShelf: change shelf in results here
 
   render() {
     const { updateShelf, shelves } = this.props;
-    const { results } = this.state;
+    const { results, query, isFetching } = this.state;
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -67,17 +72,27 @@ class SearchBooks extends Component {
           </div>
         </div>
         <div className="search-books-results">
+          {query &&
+            (isFetching ? (
+              <p>
+                <i>Searching</i>
+              </p>
+            ) : results.length ? (
+              <p>Found {results.length} books for you.</p>
+            ) : (
+              <p>
+                No books found for <i>{query}</i>. Try another term.
+              </p>
+            ))}
           <ol className="books-grid">
-            {results.length
-              ? results.map(book => (
-                  <Book
-                    key={book.id}
-                    book={book}
-                    updateShelf={updateShelf}
-                    shelves={shelves}
-                  />
-                ))
-              : 'No results found'}
+            {results.map(book => (
+              <Book
+                key={book.id}
+                book={book}
+                updateShelf={updateShelf}
+                shelves={shelves}
+              />
+            ))}
           </ol>
         </div>
       </div>

@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import flatten from 'lodash/flatten';
 import * as BooksAPI from './BooksAPI';
 import { Header } from './components';
-import { ShowBooksContainer, SearchBooksContainer } from './components';
+import { ShowBooks, SearchBooks } from './components';
 import './App.css';
 
 class BooksApp extends React.Component {
@@ -55,7 +55,7 @@ class BooksApp extends React.Component {
             exact
             path="/"
             render={() => (
-              <ShowBooksContainer
+              <ShowBooks
                 books={books}
                 updateShelf={this.updateShelf}
                 shelves={BooksApp.shelves}
@@ -65,7 +65,7 @@ class BooksApp extends React.Component {
           <Route
             path="/search"
             render={() => (
-              <SearchBooksContainer
+              <SearchBooks
                 getBookShelf={this.getBookShelf}
                 updateShelf={this.updateShelf}
                 shelves={BooksApp.shelves}
