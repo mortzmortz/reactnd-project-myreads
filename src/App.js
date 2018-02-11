@@ -40,9 +40,9 @@ class BooksApp extends React.Component {
     });
   };
 
-  getBookShelf = bookId => {
-    const foundBook = this.state.books.find(book => book.id === bookId);
-    return foundBook ? foundBook.shelf : 'none';
+  getShelfFromId = bookId => {
+    const book = this.state.books.find(book => book.id === bookId);
+    return book ? book.shelf : 'none';
   };
 
   render() {
@@ -66,7 +66,7 @@ class BooksApp extends React.Component {
             path="/search"
             render={() => (
               <SearchBooks
-                getBookShelf={this.getBookShelf}
+                getShelfFromId={this.getShelfFromId}
                 updateShelf={this.updateShelf}
                 shelves={BooksApp.shelves}
               />

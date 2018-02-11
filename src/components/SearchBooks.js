@@ -7,7 +7,7 @@ import { Book } from '../components';
 
 class SearchBooks extends Component {
   static propTypes = {
-    getBookShelf: PropTypes.func.isRequired,
+    getShelfFromId: PropTypes.func.isRequired,
     updateShelf: PropTypes.func.isRequired,
     shelves: PropTypes.array.isRequired,
   };
@@ -41,7 +41,7 @@ class SearchBooks extends Component {
     BooksAPI.search(query).then(resp => {
       const results = resp.length ? resp : [];
       const resultsWithShelves = results.map(book => {
-        book.shelf = this.props.getBookShelf(book.id);
+        book.shelf = this.props.getShelfFromId(book.id);
         return book;
       });
       this.setState({

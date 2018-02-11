@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Shelf } from '../components';
 
 const ShowBooks = ({ books, shelves, updateShelf }) => {
-  const filterByShelf = shelf => {
+  const getBooksFromShelf = shelf => {
     return books.filter(book => book.shelf === shelf);
   };
 
@@ -16,7 +16,7 @@ const ShowBooks = ({ books, shelves, updateShelf }) => {
             <Shelf
               key={shelf.key}
               title={shelf.title}
-              books={filterByShelf(shelf.key)}
+              books={getBooksFromShelf(shelf.key)}
               updateShelf={updateShelf}
               shelves={shelves}
             />
