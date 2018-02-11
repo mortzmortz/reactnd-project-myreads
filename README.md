@@ -2,11 +2,9 @@
 
 ## Project Overview
 
-This is the first project for Udacity's React Fundamentals course. The goal of this project is to create a bookshelf app that allows you to select and categorize books you have read, are currently reading, or want to read. You can change to books' status and search for new books to add to your shelf.
+This is the first project for Udacity's React Fundamentals course. The goal of this project is to create a bookshelf app that allows you to select and categorize books you have read, are currently reading, or want to read. You can change the books' status and search for new books to add to your shelf.
 
-## Installation
-
-To run the project:
+## Run the project
 
 * Install project dependencies with `yarn install`
 * Start the development server with `yarn start`
